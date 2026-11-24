@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VN Stock Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">📈 VN Stock Analyzer <span class="tag">HOSE</span></div>
+    <form id="searchForm" autocomplete="off">
+      <input id="symbol" type="text" placeholder="Nhập mã cổ phiếu, ví dụ: VCB" maxlength="10" />
+      <button type="submit">Phân tích</button>
+    </form>
+  </header>
+
+  <main>
+    <div class="chips" id="chips"></div>
+    <div id="status" class="status">Nhập mã cổ phiếu để bắt đầu.</div>
+
+    <section id="result" hidden>
+      <div class="hero">
+        <div class="card hero-price">
+          <div class="sym" id="heroSymbol"></div>
+          <div class="price" id="heroPrice"></div>
+          <div class="sub" id="heroSub"></div>
+        </div>
+        <div class="card hero-rec" id="recCard"></div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="toolbar">
+          <label><input type="checkbox" data-line="sma20" checked /> <i style="background:#facc15"></i>SMA20</label>
+          <label><input type="checkbox" data-line="sma50" checked /> <i style="background:#38bdf8"></i>SMA50</label>
+          <label><input type="checkbox" data-line="sma200" checked /> <i style="background:#f472b6"></i>SMA200</label>
+          <label><input type="checkbox" data-line="ema12" /> <i style="background:#a78bfa"></i>EMA12</label>
+          <label><input type="checkbox" data-line="ema26" /> <i style="background:#fb923c"></i>EMA26</label>
+          <label><input type="checkbox" data-line="bb" /> <i style="background:#94a3b8"></i>Bollinger</label>
+          <label class="sep"><input type="checkbox" id="showLow" /> Hiện cả mô hình độ tin cậy thấp</label>
+        </div>
+        <div id="chartMain"></div>
+        <div class="pane-title">RSI (14)</div>
+        <div id="chartRsi"></div>
+        <div class="pane-title">MACD (12, 26, 9)</div>
+        <div id="chartMacd"></div>
+        <div class="unit">Đơn vị giá: nghìn đồng. Mũi tên xanh = mô hình tăng, đỏ = mô hình giảm, chấm vàng = trung lập (★ = độ tin cậy cao).</div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>Mô hình nến phát hiện được</h3>
+          <div id="patternList" class="pattern-list"></div>
+        </div>
+        <div class="card">
+          <h3>Chỉ báo kỹ thuật (phiên gần nhất)</h3>
+          <div id="indicatorList" class="indicator-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Công cụ học tập và tham khảo, không phải lời khuyên đầu tư. Dữ liệu từ vnstock.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
